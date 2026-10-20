@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="웹 프로그래밍 과제 - 나를 소개하는 인터랙티브 프로필 페이지">
+  <meta name="theme-color" content="#0a0d18">
+  <title>My Profile | 웹 프로그래밍 과제</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <style>
+    :root {
+      --bg: #0a0d18;
+      --fg: #eef1ff;
+      --a: #8b5cf6;
+      --b: #22d3ee;
+      --c: #f472b6;
+      --side: 20vw;
+      --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      color-scheme: dark;
+      scroll-snap-type: y proximity;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(139, 92, 246, 0.6) transparent;
+    }
+
+    body {
+      font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora i {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.5;
+      will-change: transform;
+    }
+
+    .aurora i:nth-child(1) {
+      width: 46vw;
+      height: 46vw;
+      left: -10vw;
+      top: -14vw;
+      background: var(--a);
+      animation: drift1 22s ease-in-out infinite alternate;
+    }
+
+    .aurora i:nth-child(2) {
+      width: 38vw;
+      height: 38vw;
+      right: -8vw;
+      top: 20vh;
+      background: var(--b);
+      opacity: 0.32;
+      animation: drift2 26s ease-in-out infinite alternate;
+    }
+
+    .aurora i:nth-child(3) {
+      width: 34vw;
+      height: 34vw;
+      left: 30vw;
+      bottom: -16vw;
+      background: var(--c);
+      opacity: 0.3;
+      animation: drift3 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift1 {
+      to {
+        transform: translate(12vw, 10vh) scale(1.15);
+      }
+    }
+
+    @keyframes drift2 {
+      to {
+        transform: translate(-14vw, -8vh) scale(0.9);
+      }
+    }
+
+    @keyframes drift3 {
+      to {
+        transform: translate(-10vw, -12vh) scale(1.2);
+      }
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    .topline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 50;
+      transform-origin: left;
+      transform: scaleX(0);
+      background: linear-gradient(90deg, var(--a), var(--b), var(--c));
+    }
+
+    .side {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--side);
+      min-width: 220px;
+      z-index: 20;
+      padding: 0 14px 0 16px;
+    }
+
+    .menu {
+      position: absolute;
+      left: 16px;
+      right: 14px;
+      top: 0;
+      height: min(78vh, 620px);
+      border: 0;
+      background: transparent;
+      display: block;
+      width: calc(100% - 30px);
+      will-change: transform;
+    }
+
+    main {
+      position: relative;
+      z-index: 5;
+      margin-left: max(var(--side), 220px);
+    }
+
+    .pane {
+      position: relative;
+      height: 100vh;
+      scroll-snap-align: start;
+      scroll-margin-top: 0;
+    }
+
+    .pane + .pane::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    }
+
+    .pane iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      height: 100%;
+    }
+
+    .end {
+      position: relative;
+      z-index: 5;
+      margin-left: max(var(--side), 220px);
+      padding: 40px 24px 56px;
+      text-align: center;
+      color: #8089b0;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+
+    .end a {
+      color: var(--b);
+      text-decoration: none;
+    }
+
+    @media (max-width: 860px) {
+      :root {
+        --side: 100vw;
+      }
+
+      .side {
+        width: 100%;
+        min-width: 0;
+        height: 72px;
+        bottom: auto;
+        padding: 0;
+      }
+
+      .menu {
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 72px;
+      }
+
+      main,
+      .end {
+        margin-left: 0;
+      }
+
+      main {
+        padding-top: 72px;
+      }
+
+      .pane {
+        height: calc(100vh - 72px);
+        scroll-margin-top: 72px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .aurora i {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="topline" id="topline" aria-hidden="true"></div>
+
+  <aside class="side" id="side" aria-label="사이드 메뉴">
+    <iframe class="menu" id="menu" src="menu_box.html" title="프로필 메뉴 박스"></iframe>
+  </aside>
+
+  <main id="main">
+    <section class="pane" id="s0" aria-label="나의 프로필">
+      <iframe src="contents/profile.html" title="나의 프로필"></iframe>
+    </section>
+    <section class="pane" id="s1" aria-label="요즘 취미">
+      <iframe src="contents/hobby.html" title="요즘 취미"></iframe>
+    </section>
+    <section class="pane" id="s2" aria-label="학력사항">
+      <iframe src="contents/education.html" title="학력사항"></iframe>
+    </section>
+    <section class="pane" id="s3" aria-label="요즘 관심사">
+      <iframe src="contents/interest.html" title="요즘 관심사"></iframe>
+    </section>
+    <section class="pane" id="s4" aria-label="존경하는 인물">
+      <iframe src="contents/role-model.html" title="존경하는 인물"></iframe>
+    </section>
+    <section class="pane" id="s5" aria-label="교육 이수">
+      <iframe src="contents/training.html" title="교육 이수"></iframe>
+    </section>
+  </main>
+
+  <footer class="end">
+    <p>© 2026 My Profile · 웹 프로그래밍 과제 · <a href="#s0" id="totop">맨 위로</a></p>
+  </footer>
+
+  <script>
+    const panes = [...document.querySelectorAll(".pane")];
+    const menu = document.getElementById("menu");
+    const topline = document.getElementById("topline");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const narrow = matchMedia("(max-width: 860px)");
+
+    let current = 0;
+    let target = 0;
+    let active = 0;
+    let progress = 0;
+    let running = false;
+    let queued = false;
+
+    const compute = () => {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress = Math.min(1, Math.max(0, window.scrollY / max));
+      const probe = window.scrollY + window.innerHeight * 0.4;
+      let idx = 0;
+      panes.forEach((p, i) => {
+        if (p.offsetTop <= probe) idx = i;
+      });
+      if (window.scrollY >= max - 4) idx = panes.length - 1;
+      active = idx;
+
+      if (narrow.matches) {
+        target = 0;
+      } else {
+        const pad = 20;
+        const travel = Math.max(0, window.innerHeight - menu.offsetHeight - pad * 2);
+        target = pad + progress * travel;
+      }
+
+      topline.style.transform = "scaleX(" + progress + ")";
+      menu.contentWindow.postMessage({ type: "state", active, progress }, "*");
+    };
+
+    const loop = () => {
+      const diff = target - current;
+      current = reduce ? target : current + diff * 0.1;
+      if (Math.abs(diff) < 0.05) current = target;
+      menu.style.transform = "translate3d(0," + current.toFixed(2) + "px,0)";
+      if (current !== target) requestAnimationFrame(loop);
+      else running = false;
+    };
+
+    const kick = () => {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(loop);
+      }
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        compute();
+        kick();
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    narrow.addEventListener("change", onScroll);
+
+    window.addEventListener("message", (e) => {
+      const d = e.data;
+      if (!d) return;
+      if (d.type === "go") {
+        const pane = panes[d.index];
+        if (pane) window.scrollTo({ top: pane.offsetTop - (narrow.matches ? 72 : 0), behavior: reduce ? "auto" : "smooth" });
+      }
+    });
+
+    menu.addEventListener("load", () => {
+      compute();
+      current = target;
+      menu.style.transform = "translate3d(0," + current + "px,0)";
+    });
+
+    document.getElementById("totop").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+
+    compute();
+    kick();
+  </script>
+</body>
+</html>

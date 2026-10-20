@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴 박스</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <style>
+    :root {
+      --fg: #eef1ff;
+      --mute: #9aa3c7;
+      --line: rgba(255, 255, 255, 0.12);
+      --a: #8b5cf6;
+      --b: #22d3ee;
+      --c: #f472b6;
+      --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .box {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 18px 18px;
+      border-radius: 28px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      top: -90px;
+      right: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.55), transparent 70%);
+      filter: blur(10px);
+      animation: float 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(-24px, 28px);
+      }
+    }
+
+    .brand {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 20px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--a), var(--b));
+      box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.7);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--mute);
+    }
+
+    nav {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+    }
+
+    ol {
+      position: relative;
+      list-style: none;
+      display: grid;
+      gap: 4px;
+    }
+
+    .pill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(100deg, rgba(139, 92, 246, 0.45), rgba(34, 211, 238, 0.28));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 10px 26px -10px rgba(34, 211, 238, 0.6);
+      transition: transform 0.6s var(--ease);
+      pointer-events: none;
+    }
+
+    ol a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 48px;
+      padding: 0 14px;
+      border-radius: 16px;
+      color: var(--mute);
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 500;
+      transition: color 0.35s, transform 0.45s var(--ease);
+    }
+
+    ol a:hover {
+      color: var(--fg);
+      transform: translateX(5px);
+    }
+
+    ol a:focus-visible {
+      outline: 2px solid var(--b);
+      outline-offset: 2px;
+    }
+
+    ol a.on {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .num {
+      font: 600 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.1em;
+      color: var(--b);
+      opacity: 0.85;
+    }
+
+    footer {
+      position: relative;
+      margin-top: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .meter {
+      height: 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform-origin: left;
+      transform: scaleX(0);
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--a), var(--b), var(--c));
+      transition: transform 0.4s linear;
+    }
+
+    footer p {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--mute);
+    }
+
+    @media (max-height: 140px) {
+      .box {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 0 0 22px 22px;
+        gap: 12px;
+      }
+      .brand {
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+      .brand div {
+        display: none;
+      }
+      nav {
+        overflow-x: auto;
+        scrollbar-width: none;
+        flex: 1;
+      }
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+      ol {
+        display: flex;
+        gap: 6px;
+        width: max-content;
+      }
+      .pill,
+      .num {
+        display: none;
+      }
+      ol a {
+        height: 40px;
+        padding: 0 16px;
+        white-space: nowrap;
+        font-size: 0.85rem;
+      }
+      ol a.on {
+        background: linear-gradient(100deg, rgba(139, 92, 246, 0.5), rgba(34, 211, 238, 0.32));
+      }
+      footer {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="box" aria-label="메뉴 박스">
+    <header class="brand">
+      <span class="logo" aria-hidden="true">P</span>
+      <div>
+        <strong>My Profile</strong>
+        <small>PORTFOLIO 2026</small>
+      </div>
+    </header>
+
+    <nav aria-label="프로필 메뉴">
+      <ol id="list">
+        <li class="pill" id="pill" aria-hidden="true"></li>
+        <li><a href="#s0" data-i="0"><span class="num">01</span>나의 프로필</a></li>
+        <li><a href="#s1" data-i="1"><span class="num">02</span>요즘 취미</a></li>
+        <li><a href="#s2" data-i="2"><span class="num">03</span>학력사항</a></li>
+        <li><a href="#s3" data-i="3"><span class="num">04</span>요즘 관심사</a></li>
+        <li><a href="#s4" data-i="4"><span class="num">05</span>존경하는 인물</a></li>
+        <li><a href="#s5" data-i="5"><span class="num">06</span>교육 이수</a></li>
+      </ol>
+    </nav>
+
+    <footer>
+      <div class="meter" role="progressbar" aria-label="읽은 정도" aria-valuemin="0" aria-valuemax="100" id="meter"><span id="bar"></span></div>
+      <p><span>SCROLL</span><span id="pct">0%</span></p>
+    </footer>
+  </aside>
+
+  <script>
+    const links = [...document.querySelectorAll("ol a")];
+    const pill = document.getElementById("pill");
+    const bar = document.getElementById("bar");
+    const pct = document.getElementById("pct");
+    const meter = document.getElementById("meter");
+    const embedded = window.parent !== window;
+
+    const setActive = (index) => {
+      links.forEach((a, i) => {
+        a.classList.toggle("on", i === index);
+        if (i === index) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+      const target = links[index];
+      if (target) pill.style.transform = "translateY(" + (target.offsetTop - links[0].offsetTop) + "px)";
+      if (target && window.innerHeight <= 140) target.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    };
+
+    links.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const i = Number(a.dataset.i);
+        setActive(i);
+        if (embedded) window.parent.postMessage({ type: "go", index: i }, "*");
+      });
+    });
+
+    window.addEventListener("message", (e) => {
+      const d = e.data;
+      if (!d || d.type !== "state") return;
+      setActive(d.active);
+      const p = Math.max(0, Math.min(1, d.progress));
+      bar.style.transform = "scaleX(" + p + ")";
+      pct.textContent = Math.round(p * 100) + "%";
+      meter.setAttribute("aria-valuenow", Math.round(p * 100));
+    });
+
+    window.addEventListener("resize", () => {
+      const current = links.findIndex((a) => a.classList.contains("on"));
+      setActive(current < 0 ? 0 : current);
+    });
+
+    setActive(0);
+  </script>
+</body>
+</html>

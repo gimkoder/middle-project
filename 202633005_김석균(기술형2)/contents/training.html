@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>교육 이수</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../css/content.css">
+  <style>
+    .page {
+      max-width: 1280px;
+    }
+
+    .timeline {
+      padding-left: 44px;
+    }
+
+    .timeline::before {
+      left: 11px;
+      top: 14px;
+      bottom: 14px;
+      width: 3px;
+    }
+
+    .timeline li {
+      margin-bottom: 28px;
+    }
+
+    .timeline li:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline li::before {
+      left: -44px;
+      top: 42px;
+      width: 20px;
+      height: 20px;
+      background: #0a0d18;
+      border: 4px solid var(--b);
+      box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.12);
+      z-index: 1;
+    }
+
+    .timeline .card {
+      padding: 32px 36px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .timeline .card:hover {
+      transform: translateX(8px);
+      border-color: rgba(34, 211, 238, 0.45);
+    }
+
+    .timeline .meta {
+      margin-bottom: 14px;
+      gap: 10px 16px;
+    }
+
+    .timeline h2 {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .timeline p {
+      line-height: 1.85;
+    }
+
+    @media (max-width: 560px) {
+      .timeline {
+        padding-left: 34px;
+      }
+
+      .timeline::before {
+        left: 6px;
+      }
+
+      .timeline li::before {
+        left: -34px;
+        top: 34px;
+      }
+
+      .timeline .card {
+        padding: 22px 20px;
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="head rv">
+      <h1>교육 이수<br>내역</h1>
+      <p class="sub">참여한 교육과 활동입니다.</p>
+    </header>
+
+    <ol class="timeline" aria-label="교육 이수 타임라인">
+      <li>
+        <article class="card rv">
+          <div class="meta">
+            <time datetime="2026-05-14">2026.05.14 ~ 2026.05.16</time>
+            <span class="badge now">수료</span>
+          </div>
+          <h2>코린이 레벨업 프로젝트</h2>
+          <p>2026년 조선이공대학교 공학기술 교육혁신센터 주관
+            '스마트팩토리 요소 기술 교육과정을 수료함.'
+          </p>
+        </article>
+      </li>
+      <li>
+        <article class="card rv">
+          <div class="meta">
+            <time datetime="2025-08-19">2025.08.19 ~ 2025.08.21</time>
+            <span class="badge">수료</span>
+          </div>
+          <h2>GPT 기반 Vibe Coding으로 여는 제조</h2>
+          <p>2026년도 공학기술교육혁신센터 주관
+            '스마트팩토리 체험 교육'과정을 수료함.
+          </p>
+        </article>
+      </li>
+      <li>
+        <article class="card rv">
+          <div class="meta">
+            <time datetime="2026-10">2026.10</time>
+            <span class="badge">수료</span>
+          </div>
+          <h2>Cos pro java</h2>
+          <p>ybit 사이트 주관하는 java 코딩 능력검증 자격증 수료</p>
+        </article>
+      </li>
+    </ol>
+  </main>
+  <script src="../js/content.js"></script>
+</body>
+</html>

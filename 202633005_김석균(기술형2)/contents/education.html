@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학력사항</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../css/content.css">
+  <style>
+    .edu.table-wrap {
+      padding: 14px 18px 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .edu table {
+      min-width: 900px;
+      border-collapse: separate;
+      border-spacing: 0 16px;
+    }
+
+    .edu caption {
+      padding: 14px 14px 0;
+    }
+
+    .edu thead th {
+      padding: 10px 28px;
+      border: 0;
+      letter-spacing: 0.2em;
+    }
+
+    .edu tbody th,
+    .edu tbody td {
+      padding: 32px 28px;
+      vertical-align: top;
+      border: 0;
+      background: rgba(255, 255, 255, 0.05);
+      transition: background 0.5s var(--ease);
+    }
+
+    .edu tbody tr + tr th,
+    .edu tbody tr + tr td {
+      border-top: 0;
+    }
+
+    .edu tbody tr > :first-child {
+      border-radius: 20px 0 0 20px;
+    }
+
+    .edu tbody tr > :last-child {
+      border-radius: 0 20px 20px 0;
+    }
+
+    .edu tbody tr:hover {
+      background: transparent;
+    }
+
+    .edu tbody tr:hover th,
+    .edu tbody tr:hover td {
+      background: linear-gradient(100deg, rgba(139, 92, 246, 0.28), rgba(34, 211, 238, 0.16));
+    }
+
+    .edu td.name {
+      color: var(--fg);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .edu td.desc {
+      min-width: 300px;
+      line-height: 1.85;
+    }
+
+    .level {
+      display: inline-block;
+      font: 700 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.12em;
+      padding: 7px 12px;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--a), var(--b));
+    }
+
+    .edu time {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="head rv">
+      <h1>학력사항</h1>
+      <p class="sub">제가 다닌 학교와 각 학교에 대한 소개입니다.</p>
+    </header>
+
+    <section class="table-wrap edu rv" aria-label="학력 표">
+      <table>
+        <caption>최종 학력 순 정리</caption>
+        <thead>
+          <tr>
+            <th scope="col">구분</th>
+            <th scope="col">학교명</th>
+            <th scope="col">소재지</th>
+            <th scope="col">학교 설명</th>
+            <th scope="col">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="level">HIGH</span></th>
+            <td class="name">제주세화고등학교</td>
+            <td>제주특별자치도 제주시 구좌읍 세화리</td>
+            <td class="desc">제주 동쪽 해안 마을인 구좌읍 세화리에 자리한 고등학교입니다. 세화리에는 세화초등학교, 세화중학교도 함께 모여 있어 마을 전체가 하나의 학교 생활권을 이루고 있습니다.</td>
+            <td><span class="badge">졸업</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="level">MIDDLE</span></th>
+            <td class="name">제주아라중학교</td>
+            <td>제주특별자치도 제주시 아라이동</td>
+            <td class="desc">제주시 아라동 지역에 위치한 공립 중학교로, 1학년부터 3학년까지 3개 학년으로 운영됩니다.</td>
+            <td><span class="badge">졸업</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="level">ELEMENTARY</span></th>
+            <td class="name">제주아라초등학교</td>
+            <td>제주특별자치도 제주시 중앙로 518</td>
+            <td class="desc">1933년 아라 삼공의숙으로 문을 연 뒤 1963년 아라국민학교로 승격하였고, 1996년 지금의 아라초등학교로 교명을 바꾼 공립 초등학교입니다. 90년이 넘는 역사를 가지고 있습니다.</td>
+            <td><span class="badge">졸업</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="../js/content.js"></script>
+</body>
+</html>

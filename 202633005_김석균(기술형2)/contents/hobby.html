@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요즘 취미</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../css/content.css">
+  <style>
+    .page {
+      max-width: 1280px;
+    }
+
+    .intro,
+    .topic {
+      padding: 32px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .intro {
+      margin-bottom: 28px;
+    }
+
+    .intro h2 {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+
+    .points {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .points li {
+      position: relative;
+      padding: 18px 22px 18px 52px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--mute);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      transition: background 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+
+    .points li::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 27px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--a), var(--b));
+      box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.12);
+    }
+
+    .points li:hover {
+      transform: translateX(6px);
+      background: linear-gradient(100deg, rgba(139, 92, 246, 0.28), rgba(34, 211, 238, 0.16));
+      color: var(--fg);
+    }
+
+    .topic > p {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 24px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      list-style: none;
+    }
+
+    .gallery figure {
+      position: relative;
+      aspect-ratio: 9 / 10;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(34, 211, 238, 0.25), rgba(244, 114, 182, 0.3));
+      box-shadow: 0 16px 32px -18px rgba(0, 0, 0, 0.7);
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+    }
+
+    .gallery figure:hover {
+      transform: translateY(-8px);
+      border-color: rgba(34, 211, 238, 0.45);
+      box-shadow: 0 28px 44px -16px rgba(139, 92, 246, 0.65);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s var(--ease);
+    }
+
+    .gallery figure:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery figcaption {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      translate: 0 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      padding: 7px 14px;
+      color: var(--b);
+      background: rgba(10, 13, 24, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s, transform 0.4s var(--ease);
+    }
+
+    .gallery figure:hover figcaption {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 560px) {
+      .intro,
+      .topic {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .gallery {
+        gap: 12px;
+      }
+
+      .gallery figure {
+        border-radius: 14px;
+      }
+
+      .points li {
+        padding: 16px 16px 16px 44px;
+      }
+
+      .points li::before {
+        left: 16px;
+        top: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="head rv">
+      <h1>요즘 취미</h1>
+      <p class="sub">ai 로 이미지 생성하기</p>
+    </header>
+
+    <section class="intro rv" aria-labelledby="what">
+      <h2 id="what">AI Image Generation이란?</h2>
+      <ul class="points">
+        <li>AI Image Generation은 인공지능을 활용해 텍스트 프롬프트나 참고 이미지를 바탕으로 새로운 이미지를 생성하는 기술입니다.</li>
+        <li>사용자는 원하는 스타일, 색상, 구도 등을 입력해 다양한 이미지를 만들 수 있습니다.</li>
+        <li>사진처럼 사실적인 이미지부터 일러스트, 3D 아트까지 폭넓게 표현할 수 있습니다.</li>
+        <li>디자인, 광고, 콘텐츠 제작 등 다양한 분야에서 창의적인 작업을 지원합니다.</li>
+        <li>누구나 아이디어를 시각적으로 구현할 수 있지만, 저작권과 이미지의 정확성에 대한 주의도 필요합니다.</li>
+      </ul>
+    </section>
+
+    <article class="topic rv">
+      <p>내가 만들어 본 이미지</p>
+      <ul class="gallery" aria-label="AI로 생성한 이미지">
+        <li style="list-style:none">
+          <figure>
+            <img src="../images/ai image1.png" alt="AI로 생성한 이미지 1" loading="lazy">
+            <figcaption>AI IMAGE 01</figcaption>
+          </figure>
+        </li>
+        <li style="list-style:none">
+          <figure>
+            <img src="../images/ai image2.png" alt="AI로 생성한 이미지 2" loading="lazy">
+            <figcaption>AI IMAGE 02</figcaption>
+          </figure>
+        </li>
+        <li style="list-style:none">
+          <figure>
+            <img src="../images/ai image3.png" alt="AI로 생성한 이미지 3" loading="lazy">
+            <figcaption>AI IMAGE 03</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </article>
+  </main>
+  <script src="../js/content.js"></script>
+</body>
+</html>
